@@ -6,7 +6,8 @@
 <body>
 
 <div id="root">
-	<button @click='method1()'>Click this</button>
+	<button @click='method1()'>Run Method 1</button>
+	<button @click='method2()'>Run Method 2</button>
 </div>
 
 
@@ -16,26 +17,32 @@
 
 		Vue.http.options.emulateJSON = true;
 		Vue.http.options.emulateHTTP = true;
-  Vue.http.options.error = true;
+  // Vue.http.options.error = true;
 
 
-// var config = {} ;
 var config = {headers: {'Authorization': "123"} } ;
-
 
 		new Vue({
 			el : "#root",
 			data : {
-				message : "Data Binding Is Working"
 			},
 			methods : {
+
 
 				method1(){
 					this.$http.post('http://site2.dev/breackvueres/1.php',{p1:"one",p2:"two"},config).then(
 							response=>console.log("success", response), 
 							err=>console.log("error", JSON.parse(err.body) )
 						) 				
+				},
+				
+				method2(){
+					this.$http.post('http://site2.dev/breackvueres/1.php',{p1:"one",p2:"two"}).then(
+							response=>console.log("success", response), 
+							err=>console.log("error", JSON.parse(err.body) )
+						) 				
 				}
+
 
 			},
 			computed : { 
