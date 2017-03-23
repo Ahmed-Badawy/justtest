@@ -1,9 +1,7 @@
 <?php
 
-$arr = array('message' => 'blah'); //etc
-
-// header('HTTP/1.1 201 Created');
-
+$arr = array('message' => 'blah');
+		
     header('WWW-Authenticate: Basic realm="Test Authentication System"');
     header("HTTP/1.1 401 Unauthorized");
     header("Access-Control-Allow-Origin: *");

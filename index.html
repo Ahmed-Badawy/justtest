@@ -6,8 +6,8 @@
 <body>
 
 <div id="root">
-	<button @click='method1()'>Run Method 1</button>
-	<button @click='method2()'>Run Method 2</button>
+	<button @click='method(false)'>Run Method without auth</button>
+	<button @click='method(true)'>Run Method with auth</button>
 </div>
 
 
@@ -20,29 +20,23 @@
   // Vue.http.options.error = true;
 
 
-var config = {headers: {'Authorization': "123"} } ;
 
 		new Vue({
 			el : "#root",
 			data : {
 			},
 			methods : {
-
-
-				method1(){
-					this.$http.post('http://site2.dev/breackvueres/1.php',{p1:"one",p2:"two"},config).then(
-							response=>console.log("success", response), 
-							err=>console.log("error", JSON.parse(err.body) )
-						) 				
-				},
 				
-				method2(){
-					this.$http.post('http://site2.dev/breackvueres/1.php',{p1:"one",p2:"two"}).then(
+				method(conf){
+					let config = {headers: {} };
+					if(conf) config =  { headers: {'Authorization': "123"} };
+					let link = "http://site1.dev/breackvueres/1.php";
+
+					this.$http.post(link,{}, config ).then(
 							response=>console.log("success", response), 
 							err=>console.log("error", JSON.parse(err.body) )
-						) 				
+						);
 				}
-
 
 			},
 			computed : { 
