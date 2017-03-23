@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<div id="root">
+	<button @click='method1()'>Click this</button>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.4/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.min.js"></script>
+	<script type="text/javascript">
+
+		Vue.http.options.emulateJSON = true;
+		Vue.http.options.emulateHTTP = true;
+  Vue.http.options.error = true;
+
+
+// var config = {} ;
+var config = {headers: {'Authorization': "123"} } ;
+
+
+		new Vue({
+			el : "#root",
+			data : {
+				message : "Data Binding Is Working"
+			},
+			methods : {
+
+				method1(){
+					this.$http.post('http://site2.dev/breackvueres/1.php',{p1:"one",p2:"two"},config).then(
+							response=>console.log("success", response), 
+							err=>console.log("error", JSON.parse(err.body) )
+						) 				
+				}
+
+			},
+			computed : { 
+
+			}			
+		})
+	</script>
+
+
+</body>
+</html>
